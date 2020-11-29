@@ -539,6 +539,7 @@ end
 # this is not a complete definition!
 class ActiveSupport::TimeWithZone
   include(::DateAndTime::Calculations)
+  include(::Comparable)
 
   sig { returns(ActiveSupport::TimeWithZone) }
   def midnight; end
