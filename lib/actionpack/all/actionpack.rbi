@@ -1108,6 +1108,8 @@ end
 ActionDispatch::RemoteIp::TRUSTED_PROXIES = T.let(T.unsafe(nil), T::Array[T.untyped])
 
 class ActionDispatch::Request
+  include ::Rack::Request::Helpers
+
   def body; end
 
   # Provides access to the request's HTTP headers, for example:
@@ -1193,6 +1195,10 @@ class ActionDispatch::Request
   # True if the request came from localhost, 127.0.0.1, or ::1.
   sig { returns(T::Boolean) }
   def local?; end
+
+  sig { returns(T::Boolean) }
+  def xml_http_request?; end
+  alias :xhr? :xml_http_request?
 end
 
 class ActionDispatch::Response
